@@ -4,6 +4,7 @@ Also can be defined as a defender bot that auto-deletes NSFW and/or swear words.
 ![Mukto bot banner 1](https://media.discordapp.net/attachments/816302805560066069/856057289043607562/muktodiscbot.png?width=1101&height=231)
 ![Mukto bot banner 2](https://media.discordapp.net/attachments/816302805560066069/856057306504233010/muxbot_banner.png?width=1101&height=348)
 Image from a scene in a video by [League of Legends](https://www.youtube.com/watch?v=KbNL9ZyB49c), edited with [Canva](https://canva.com)
+
 # Usage
 * You may invite the currently active version of this bot as 'Mukto' from [here](https://mukto.live)
 * You can also use this as a base template for your own bot
