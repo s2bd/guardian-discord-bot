@@ -12,3 +12,8 @@ Image from a scene in a video by [League of Legends](https://www.youtube.com/wat
 
 # Restrictions
 Currently there are no specified restrictions from my behalf except a kind suggestion NOT to use the logging features of this bot!
+
+# Acknowledgements
+* Main development : [Dewan Mukto](https://github.com/dmimukto)
+* Inspiration, template base : [Replit](https://replit.com/@templates/Discordpy-bot-template-with-commands-extension)
+* Logging base : [Cics0-gif](https://github.com/Cisc0-gif)
