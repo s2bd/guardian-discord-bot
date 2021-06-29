@@ -12,6 +12,8 @@ import sys
 import time
 import discord.ext
 import random
+import requests
+import urllib
 import json
 import logging
 import datetime
@@ -85,9 +87,19 @@ async def ping(ctx):
 # A mimicry command that requires BLACKLIST_MODE to be turned ON.
 @client.command()
 async def muxsays(ctx, *, arg):
-  #"| Copies message and tells it via his message"
+  "| Copies message and tells it via his message"
   copythat = discord.utils.escape_mentions(arg)
   await ctx.send(copythat)
+
+@client.command()
+async def ecoji(ctx, limit):
+    "| Testing a new plugin for Automata on Muxbot"
+     Sends randomly generated emojis from Jack Harrhy's Ecoji project
+    ecojiSrc = "https://jackharrhy.dev/urandom/ecoji/"+str(limit)
+    ecojiTxt = urllib.request.urlopen(ecojiSrc)
+    for row in ecojiTxt:
+      ecojiRows = row.decode("utf-8")
+      await ctx.send(ecojiRows)
 
 # A standard command that every moderator or administrator loves
 @client.command()
@@ -151,7 +163,7 @@ async def on_ready():
   # You may uncomment and place in one of the following 'activity statuses' for the bot.
   # By default, Muxbot runs a 'streaming' status and it is connected to my Twitch URL. (Speaking of which, follow the link and check me out please!)
   twitch_url = 'https://twitch.tv/dukemantwo'
-  await client.change_presence(activity=discord.Streaming(name="DukeManTwo, url=twitch_url)
+  await client.change_presence(activity=discord.Streaming(name="DukeManTwo", url=twitch_url))
                                                     
                                                     
                                                     
@@ -190,7 +202,7 @@ async def on_ready():
   print('https://discordapp.com/api/oauth2/authorize?scope=bot&client_id=' + str(client.user.id))
   print('--------------------------------------------------------------------------')
   print('Logged in as:')
-  print("Username : "+client.user.name+" a.k.a. "+client.user+" with ID : "+client.user.id)
+  print("Username : "+str(client.user.name)+" a.k.a. "+str(client.user)+" with ID : "+str(client.user.id))
   print('╭─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╮')
   print(" LIVE CHAT LOG - See the Serverwise Logs For Details ")
   print("╰─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╯")
@@ -374,7 +386,7 @@ async def on_message(message):
   if ("mux") in message.content.lower() and ("where") in message.content.lower() and ("your") in message.content.lower() and (("sister") in message.content.lower() or ("partner") in message.content.lower()):
     await channel.send("Oh, right...")
     await asyncio.sleep(2)
-    await channel.send("Invite her here, please : https://mukto.live/bots/heartbreak)
+    await channel.send("Invite her here, please : https://mukto.live/bots/heartbreak")
 
   # Changes nickname of a user (permission required)
   if message.content.lower() == "/nickname":
