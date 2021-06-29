@@ -1,6 +1,6 @@
 # 𝗠𝗨𝗫𝗕𝗢𝗧 (𝗠𝗨𝗞𝗧𝗢) 𝗗𝗜𝗦𝗖𝗢𝗥𝗗 𝗕𝗢𝗧 - 𝗢𝗥𝗜𝗚𝗜𝗡𝗔𝗟 𝗦𝗢𝗨𝗥𝗖𝗘
 # @author dmimukto 2021
-# @credits Replit's Discord Bot template, Stack Overflow
+# @credits Replit's Discord Bot template, Stack Overflow, Cisc0-gif (https://github.com/Cisc0-gif/Discord-Bot-Template/blob/a53aad3ae91ed02d6f99a97328e1d9e4a9cc4a17/bot.py)
 # @license MIT License (https://github.com/dmimukto/Muxbot/blob/main/LICENSE)
 # @copyright Asenturisk Corporation 2021
 
