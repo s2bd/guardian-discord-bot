@@ -1,7 +1,6 @@
-# 𝗡𝗔𝗧𝗦𝗨𝗞𝗜 (𝗛𝗘𝗔𝗥𝗧𝗕𝗥𝗘𝗔𝗞) 𝗗𝗜𝗦𝗖𝗢𝗥𝗗 𝗕𝗢𝗧 - 𝗢𝗥𝗜𝗚𝗜𝗡𝗔𝗟 𝗦𝗢𝗨𝗥𝗖𝗘
+# 𝗠𝗨𝗫𝗕𝗢𝗧 (𝗠𝗨𝗞𝗧𝗢) 𝗗𝗜𝗦𝗖𝗢𝗥𝗗 𝗕𝗢𝗧 - 𝗢𝗥𝗜𝗚𝗜𝗡𝗔𝗟 𝗦𝗢𝗨𝗥𝗖𝗘
 # @author dmimukto 2021
 # @credits Replit's Discord Bot template, Stack Overflow, Cisc0-gif (https://github.com/Cisc0-gif/Discord-Bot-Template/blob/a53aad3ae91ed02d6f99a97328e1d9e4a9cc4a17/bot.py)
-# @credits_plugins Automata (https://github.com/MUNComputerScienceSociety/Automata), hamzahap (https://github.com/MUNComputerScienceSociety/Automata/commits?author=hamzahap), mudkip (https://github.com/MUNComputerScienceSociety/Automata/commits?author=Mudkip)
 # @license MIT License (https://github.com/dmimukto/Muxbot/blob/main/LICENSE)
 # @copyright Asenturisk Corporation 2021
 
@@ -21,132 +20,102 @@ from collections import Counter
 import platform
 from keep_alive import keep_alive
 
+# Placed a control variable (constant) up here, so that I don't have to scroll down everytime.
+# Keep this turned to True if you want the bot to auto-delete messages containing blacklisted words. And set it to False if you really love profanity.
+BLACKLIST_MODE = True
+
 # Further imports for running extra features from discord.py and python itself
 from discord.utils import get
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions,  CheckFailure, check
 
-
 # Defining the variable "client" as discord.Client() (So that I don't have to write discord.Client() everytime. C'mon! If you're reading this, you're definitely a programmer so you should understand the usual etiquettes and shortcuts we use!)
 client = discord.Client()
-# Here's where you can customize the bot's prefix. Since this is the pure source from a running version of Heartbreak (https://mukto.live/bots/heartbreak), The default prefix is a dot "." but it is unnecessary since Heartbreak detects triggers from the regular messages anyway
-client = commands.Bot(command_prefix = '.') #put your own prefix here
+# Here's where you can customize the bot's prefix. Since this is the pure source from a running version of Muxbot (Mukto : https://mukto.live/), the default prefix is "mux" followed by a whitespace.
+client = commands.Bot(command_prefix = 'mux, ')
 
 # If you're running your bot on Replit (which I myself used and greatly recommend), you can set up private variables from the sidebar. Elsewhere, you usually create a ".env" file in the directory.
 # In that .env file, you just add in a single line "TOKEN = 897wr8iuaf09fWhateverYourTokenIs244324"
 TOKEN = os.getenv("TOKEN")
 
 
-# TOLERANCE VALUES HERE :
-# I still haven't properly set them up for usage.
-tolerance_help = 0
-tolerance_sus = 0
-
-# These are variables linked to some hardcoded GIFs and videos for Heartbreak.
-
-GIGGLE = "https://cdn.discordapp.com/emojis/821538085741133845.png"
-CHIKA_GIF = "https://media.tenor.com/images/639a8f11cddb913ea4a4d81ceda3f8ec/tenor.gif"
-PAIMON_GIF = "https://upload-os-bbs.hoyolab.com/upload/2020/07/19/1096276/5d55575548a30ca21fcdb50285b9c694_6465808929343059713.gif"
-PAIMON_EHE = "https://media1.tenor.com/images/64eb0176b8ec007e2c0ffa65a92c8dc0/tenor.gif"
-SUSCLIP = "https://tribe-video-input-temp.s3.amazonaws.com/5f9adb96fb2c414b6f59de2c/posts/60cb4b950bcc7b081a04aebb/65928_sus.mp4"
-
 """
 =======================================[    𝐂𝐥𝐢𝐞𝐧𝐭 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬    ]======================================
 """
 # Assuming you are already familiar with the official Discord.py API (https://discordpy.readthedocs.io/en/stable/api.html), you should know the basics about client.event and client.command functions.
+                                                    
+# These are variables linked to some promotional images for Muxbot.
+MUXBOT_01 = "https://media.discordapp.net/attachments/816302805560066069/856057289043607562/muktodiscbot.png?width=1101&height=231"
+MUXBOT_02 = "https://media.discordapp.net/attachments/816302805560066069/856057306504233010/muxbot_banner.png?width=1101&height=348"
 
-# Sends a GIF of Paimon doing the 'ehe' pose
+# This is a fairly basic command that greets new users of this on Discord. This is not automated yet, so you manually have to type "mux, greet" into the chat.
+# I'm not explaining every single statement for this function.
 @client.command()
-async def ehe(ctx):
-  "| Ehe~"
-  await ctx.send(PAIMON_EHE)
+async def greet(ctx):
+  """| Greets new users and the bot introduces himself"""
+  await ctx.send(MUXBOT_01)
+  await ctx.send("""
+**Behold, the Mux bot!**
+  
+Ahoy there! I'm Mukto, the virtual projection of Dewan Mukto's heart, mind and soul.
+Right now, I am not as capable as I was planned to be. 
+But hopefully in the upcoming days, I shall be stronger and more powerful.
+  
+For now, allow me to protect your server from profanity and NSFW materials. Just grant me the role with the permission to 'Manage Messages'. Or better still, give me an administrator role.
+  
+I hope I can serve ya well, pal. 😎👌
+  
+  """)
+  await ctx.send(MUXBOT_02)
+  await ctx.send("```version 0.1.9 early access```")
 
-# Sends a GIF of Paimon hovering about (like the one in the Genshin Impact idle menu)
-@client.command()
-async def paimon(ctx):
-  """| Have a Paimon!"""
-  await ctx.send(PAIMON_GIF)
-
-# Does exactly what the help text says 
+# Another basic command, but slightly more useful than the previous 'promotional' one
 @client.command()
 async def choose(ctx, *choices: str):
     """| Chooses between multiple words provided, seperated by spaces."""
     await ctx.send(random.choice(choices))
 
-# This plugin/feature has been adapted from https://github.com/MUNComputerScienceSociety/Automata/blob/master/plugins/Hewwo/__init__.py
-# @author mudkip (https://github.com/Mudkip)
-@client.command()
-async def hewwo(ctx, *, speech: str):
-#async def hewwo(ctx, *speech: str):
-    """| Converts given words to cute words"""
-    #try:
-    transform = str(discord.utils.escape_mentions(speech).lower().replace('r', 'w').replace('l', 'w').replace('n', 'ny').replace('oo', 'woo'))
-    await ctx.send(transform)
-    #except:
-     # await ctx.send("""🥺 I'm sorry, senpai. I don't understand this command. 😞""")
-
-# A really annoying command that pings @everyone
+# This is an annoying command that is better kept a secret than a publicly accessible one
 @client.command()
 async def ping(ctx):
     """| Testing command"""
-    await ctx.send("""@everyone @everyone @everyone""")
+    await ctx.send("""No, I won't ping @everyone .""")
+    await ctx.send("(Heheh, I just did. 😈)")
 
-# Sends Mahir Chowdhury's YouTube channel link.
-# Was implemented as a sponsorship feature
+# A mimicry command that requires BLACKLIST_MODE to be turned ON.
 @client.command()
-async def mahir(ctx):
-    """| Sends Mahir's channel link."""
-    await ctx.send("""
-    Here ya go!
-    Mahwweeeer Bwwweaats...
-    my favorite~ 😊🤗
-    https://www.youtube.com/c/MahirBeats
-    """)
-
-# This plugin/feature has been adapted from https://github.com/MUNComputerScienceSociety/Automata/blob/master/plugins/Vibe/__init__.py
-# @author Hamza Punjabi (https://github.com/hamzahap)
-VIBE_IMAGE = "https://s3.gifyu.com/images/catvibe.gif"
-VIBIER_IMAGE = "https://s3.gifyu.com/images/ezgif.com-gif-maker-174e18faa852a3028.gif"
-VIBIEST_IMAGE = "https://s3.gifyu.com/images/ezgif.com-gif-maker-2664260aedaea9638.gif"
-@client.command()
-async def vibe(ctx: commands.Context, vibelevel: int = 1):
-  """| Replies with a cat bop GIF. Vibe levels can also be specified."""
-  if vibelevel <= 1:
-    await ctx.send(VIBE_IMAGE)
-  elif vibelevel == 2:
-    await ctx.send(VIBIER_IMAGE)
-  else:
-    await ctx.send(VIBIEST_IMAGE)
-
-# This plugin/feature was inspired by the 'hewwo' plugin/feature above
-@client.command()
-async def says(ctx, *, arg):
-  "| Copies message and tells it via her message"
+async def muxsays(ctx, *, arg):
+  #"| Copies message and tells it via his message"
   copythat = discord.utils.escape_mentions(arg)
   await ctx.send(copythat)
 
-# Still haven't implemented a proper 'bug status' output yet, so Heartbreak just sends the rather-inappropriate plugin fail text
-@client.command()
-async def vomit(ctx):
-    """| Spits out errors in her program."""
-    await ctx.send("""🥺 senpai, please don't make me do this...""") 
-
-# Member kicker 2000
+# A standard command that every moderator or administrator loves
 @client.command()
 async def kick(ctx, member : discord.Member):
     """| Kicks a member. Don't try this!"""
     try:
         await member.kick(reason=None)
-        await ctx.send("🙄😜 Oopsies, I kicked "+member.mention) #simple kick command to demonstrate how to get and use member mentions
+        await ctx.send("🦵 Get lost, "+member.mention) # Kickee kickee, heheee XD
     except:
-        await ctx.send("""I'm sorry, either I don't have the permissions to do this evil thing or I don't want to do this. 😅😓""")
+        await ctx.send("""Why should I? 🤷‍♂️""") # Something went wrong
 
-# C'mon! She doesn't want to! You gotta do it the 'hard way' (by coming over to Github and finding the source code by yourself!)
+# Another useful command.
 @client.command()
-async def xray(ctx):
-  """| Shows her entire source code."""
-  await ctx.send("""😡 NO I WON'T!""")
-
+async def warn(ctx, member : discord.Member, reason="No reason"):
+    """| Warns a member for doing something wrong."""
+    if reason == "No reason":
+      # It sends a warning in the server's channel
+      await ctx.send(">>> "+member.mention+" has been warned")
+      # It also sends the warning in the particular violator's DMs (direct messages)
+      await message.author.send("Yo "+str(message.author)+".")
+      await message.author.send("You have been warned.")
+      await message.author.send("Be careful. Or else, punishments will be severe. 😈")
+    elif reason != "No reason":
+      # Same things happen, except this time, the reason for the warning has been mentioned, too.
+      await ctx.send(">>> "+member.mention+" has been warned, for"+str(reason))
+      await message.author.send("Yo "+str(message.author)+".")
+      await message.author.send("You have been warned for"+str(reason))
+      await message.author.send("Be careful. Or else, punishments will be severe. 😈")
 
 
 
@@ -158,8 +127,8 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(mes
 logger.addHandler(handler)
 
 # Logging system for recording server messages (OPTIONAL)
-def logwrite(msg, server): #writes chatlog to MESSAGES.log
-  with open('ServerMsgs/'+str(server)+'_MESSAGES.log', 'a+') as f:
+def logwrite(msg, server):
+  with open('Serverwise/'+str(server)+'_MESSAGES.log', 'a+') as f:
     f.write(msg + '\n')
   f.close()
 
@@ -169,37 +138,23 @@ def bugwrite(msg):
     buglog.write(msg + '\n')
   buglog.close()
 
+
+  
 """
 =======================================[    𝐂𝐥𝐢𝐞𝐧𝐭 𝐞𝐯𝐞𝐧𝐭𝐬   ]======================================
 """
 # Assuming you are already familiar with the official Discord.py API (https://discordpy.readthedocs.io/en/stable/api.html), you should know the basics about client.event and client.command functions.
 
-
-# This function runs whenever Heartbreak wakes up from her virtual land of dreams 
 @client.event
+# This function runs whenever your bot is booted up and is ready to roll!
 async def on_ready():
-  # The following wordmark is for decorative purposes only. Please remove it since you are not hosting Heartbreak 'as is'.
-  print("""
-  
-.  .             .   .               ,   
-|  |             |   |               |   
-|--| ,-. ,-: ;-. |-  |-. ;-. ,-. ,-: | , 
-|  | |-' | | |   |   | | |   |-' | | |<  
-'  ' `-' `-` '   `-' `-' '   `-' `-` ' ` """)
-  print('---------------------------------------------------------------------')
-  print('')
-  print('https://discordapp.com/api/oauth2/authorize?scope=bot&client_id=' + str(client.user.id))
-  print('--------------------------------------------------------------------------')
-  print('Logged in as:')
-  print("Username : "+str(client.user.name)+" a.k.a. "+str(client.user)+" with ID : "+str(client.user.id))
-  print('╭─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╮')
-  print(" LIVE CHAT LOG - See the Serverwise Logs For Details ")
-  print("╰─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╯")
-
   # You may uncomment and place in one of the following 'activity statuses' for the bot.
-  # By default, Heartbreak runs a 'listening' status.
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Mahir Beats"))
-  
+  # By default, Muxbot runs a 'streaming' status and it is connected to my Twitch URL. (Speaking of which, follow the link and check me out please!)
+  twitch_url = 'https://twitch.tv/dukemantwo'
+  await client.change_presence(activity=discord.Streaming(name="DukeManTwo, url=twitch_url)
+                                                    
+                                                    
+                                                    
 # ⊱ ──────────────────────── {.⋅ ✯ ⋅.} ──────────────────────── ⊰ #
 # Set`Playing ` status
 #await client.change_presence(activity=discord.Game(name="add your game))
@@ -213,75 +168,84 @@ async def on_ready():
 # Set `Watching ` status
 #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"))
 # ⊱ ──────────────────────── {⋅. ✯ .⋅} ──────────────────────── ⊰ #
-  
-  # End of on_ready()
 
-  
+                                                    
+  # The following wordmark is for decorative purposes only. Please remove it since you are not hosting the Mukto bot nor the Muxbot 'as is'.
+  print("""
+                                                 .-'''-.     
+                                                '   _    \   
+ __  __   ___                 .               /   /` '.   \  
+|  |/  `.'   `.             .'|              .   |     \  '  
+|   .-.  .-.   '          .'  |           .| |   '      |  ' 
+|  |  |  |  |  |         <    |         .' |_\    \     / /  
+|  |  |  |  |  |  _    _  |   | ____  .'     |`.   ` ..' /   
+|  |  |  |  |  | | '  / | |   | \ .' '--.  .-'   '-...-'`    
+|  |  |  |  |  |.' | .' | |   |/  .     |  |                 
+|__|  |__|  |__|/  | /  | |    /\  \    |  |                 
+               |   `'.  | |   |  \  \   |  '.'               
+               '   .'|  '/'    \  \  \  |   /                
+                `-'  `--''------'  '---'`'-'                  """)
+  print('---------------------------------------------------------------------')
+  print('')
+  print('https://discordapp.com/api/oauth2/authorize?scope=bot&client_id=' + str(client.user.id))
+  print('--------------------------------------------------------------------------')
+  print('Logged in as:')
+  print("Username : "+client.user.name+" a.k.a. "+client.user+" with ID : "+client.user.id)
+  print('╭─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╮')
+  print(" LIVE CHAT LOG - See the Serverwise Logs For Details ")
+  print("╰─━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━─╯")
 
-# Auto-commands that run whenever their respective triggers have been activated
+# End of on_ready()
 
+
+# This event
 @client.event
 async def on_member_join(member):
-  #channel = message.channel
   server = member.guild
   print("Member:", member, "joined!")
-  #await channel.send("Member:", member, "joined 😀")
   logwrite("Member: " + str(member) + " joined!", server)
 
 @client.event
 async def on_member_remove(member):
-  #channel = message.channel
   server = member.guild
   print("Member:", member, "removed!")
-  #await channel.send("Member:", member, "removed 😞")
   logwrite("Member: " + str(member) + " removed!", server)
 
 @client.event
 async def on_guild_role_create(role):
-  #channel = message.channel
   server = role.guild
   print("Role:", role, "was created!")
-  #await channel.send("Role:", role, "was created! 📝")
   logwrite("Role: " + str(role) + " was created!", server)
 
 @client.event
 async def on_guild_role_delete(role):
-  #channel = message.channel
   server = role.guild
   print("Role:", role, "was deleted!")
-  #await channel.send("Role:", role, "was deleted! ❎")
   logwrite("Role: " + str(role) + " was deleted!", server)
 
 @client.event
 async def on_guild_channel_create(channel):
-  #channel = message.channel
   server = channel.guild
   print("Channel:", channel, "was created!")
-  #await channel.send("Channel:", channel, "was created!")
   logwrite("Channel: " + str(channel) + " was created!", server)
 
 @client.event
 async def on_guild_channel_delete(channel):
-  #channel = message.channel
   server = channel.guild
   print("Channel:", channel, "was deleted!")
-  #await channel.send("Channel:", channel, "was deleted!")
   logwrite("Channel: " + str(channel) + " was deleted!", server)
 
 @client.event
 async def on_guild_channel_update(before, after):
-  #channel = message.channel
   server = after.guild
   print("Channel Updated:", after)
-  #await channel.send("Channel Updated:", after)
   logwrite("Channel Updated: " + str(after), server)
-
 
 @client.event
 async def on_message(message):
   # First up, set up the conditions that the bot ignores whatever it says, otherwise there could be an infinite loop
   if message.author == client.user:
-    return #ignore what bot says in server so no message loop
+    return 
   channel = message.channel
   try:
     server = channel.guild
@@ -292,29 +256,125 @@ async def on_message(message):
   print(message.author, "said:", message.content, "-- Time:", time.ctime()) #reports to discord.log and live chat
   logwrite(str(message.author) + " said: " + str(message.content) + "-- Time: " + time.ctime(), server)
 
-  
 
-  # This mechanism works just like Muxbot's blacklist mode, but in place of profanity, Heartbreak deletes her client.command commands, so that everything is clean
-  # Also, this allows her to copy a user's messages and then immediately delete the user who sent the original message, making it harder to trace who said that.
-  speakHeaders = [".say", ".hewwo", ".ehe",".paimon",".ping",".mahir"]
-  if any(word in message.content.lower() for word in speakHeaders):
-      try:
-        await message.delete()
-      except:
-        return
-  
-  # THE FOLLOWING ARE SOME 'SMART COMMANDS' that don't need a prefix to work. Heartbreak simply fishes out its instruction parameters if some conditions are met
-  # To ensure better sensitivity, the commands are not case-sensitive since Heartbreak converts all text strings into lowercase English ASCII.
+# Muxbot's defensive system against profanity/blacklisted words
 
-  # BUG LOGGER SYSTEM
-  if ("heartbreak") in message.content.lower() and (("report") in message.content.lower() or ("log") in message.content.lower())and ("bug") in message.content.lower():
-    await channel.send("Hmm... you want me to report a bug, senpai? 🤔 Okiiii. 😊 Type it down starting with `/log`")
+  if BLACKLIST_MODE:
+      blackList = [] # Add your own set of blacklisted words into this list.
+
+      insultworthy = [] # Additional list of blacklisted words if the previous one fails to detect any.
+      # The list below is a default set of insults that Muxbot himself sends to counter the offenders. They have been directed at youngsters.
+      insults = ["How would you feel if your profile showed up in the dark web tonight?","Mind your manners, kid. Or else the consequences will be worse than revealing your browsing history to your parents.","Got your data recorded. What're ya gonna do now? Go ahead, kick me. Your data remains with me. FOREVER.","Watch your tongue. You don't wanna mess with me. 'Cause I can track your IP, store your ID, and play pranks on ya in real life. For the rest of your unworthy life.","You certainly show what your parents taught ya. I dunno who should be sorry - you or your parents.","One wrong move, and I'm gonna send local thugs after you.","I'm gonna crack your balls and cook omellettes with it.","I'm gonna do the Fukouna Shoujo thing to you.","Lol. You cheated, so did I!","Got your data recorded. What're ya gonna do now? Go ahead, kick me. Your data remains with me. FOREVER.","I will pray for you to go to Hell.","The world is not meant for people like you. Go run to your parents' lap and cry!","You're a disgrace to your religion.","Look at you, sending NSFW words and content. I hope you wouldn't mind if I send people to do them practically to you.", "Your brain called me last night. It wants a divorce. Go crack your skull, you degenerate creep! Atleast your brain will have some peace.","Nope. You can't do this here.", "Bad luck.", "Peace be upon your sad life.","Oh, is that the best word you know?","You know, I can be a better racist, human.","تَبَّتْ يَدَآ أَبِى لَهَبٍ وَتَبَّ","Got the guts, huh? Lemme warn ya in advance, in case you don't piss your pants, you overgrown speck of meat! I'll teach ya proper manners today.","By the time you've even finished reading this message, your data is halfway across the Pacific. So start praying to your God. I doubt He'll want to protect you because of the sick stench of sin.","Still you wanna humiliate yourself further? Go ahead and hit a thumbs up if you're even worthy of an average life, sucker.","Got your data recorded. What're ya gonna do now? Go ahead, kick me. Your data remains with me. FOREVER."]
+      
+      # This section of code runs if it finds any direct blacklisted words in the chat
+      if any(word in message.content.lower() for word in blackList):
+          try:
+            await message.delete()
+          except:
+            print("Either msg is in DM or something went wrong.")
+            await message.add_reaction('<:kgm_angry:850398050358132756>') # An emoji from KoGaMa (https://kogama.com), utilized in a Discord server for reference
+
+      # This section of code runs if anyone tries to cheat the auto-detection system, e.g. by adding in lots of spaces or dots or other symbols to bypass Muxbot's sensitivity
+      if len(message.content.lower().replace(" ","")) <=6 and any(word in message.content.lower().replace(" ","") for word in insultworthy):
+        dice = random.randint(0,len(insults)-1)
+        choice = insults[dice]
+        try:
+          await message.delete()
+        except:
+          print("Something went wrong while trying to delete a msg.")
+          await message.add_reaction('<:kgm_angry:850398050358132756>')
+        await channel.send(choice)
+        if dice // 2 == 0:
+          await message.author.send('**Say cheese, ' + str(message.author) + '**')
+          await asyncio.sleep(3)
+          await message.author.send('This will go to the database records.')
+          await asyncio.sleep(5)
+          await message.author.send("I'll be sure to send a copy to your parents. 😈")
+
+      elif any(word in message.content.strip() for word in insultworthy):
+        dice = random.randint(0,len(insults)-1)
+        choice = insults[dice]
+        try:
+          await message.delete()
+        except:
+          print("Something went wrong while trying to delete a msg.")
+          await message.add_reaction('<:kgm_angry:850398050358132756>')
+        await channel.send(choice)
+        if dice // 2 == 0:
+          await message.author.send('**Say cheese, ' + str(message.author) + '**')
+          await asyncio.sleep(3)
+          await message.author.send('This will go to the database records.')
+          await asyncio.sleep(5)
+          await message.author.send("I'll be sure to send a copy to your parents. 😈")
+
+      elif any(word in message.content.replace(".","") for word in insultworthy):
+        dice = random.randint(0,len(insults)-1)
+        choice = insults[dice]
+        try:
+          await message.delete()
+        except:
+          print("Something went wrong while trying to delete a msg.")
+          await message.add_reaction('<:kgm_angry:850398050358132756>')
+        await channel.send(choice)
+        if dice // 2 == 0:
+          await message.author.send('**Say cheese, ' + str(message.author) + '**')
+          await asyncio.sleep(3)
+          await message.author.send('This will go to the database records.')
+          await asyncio.sleep(5)
+          await message.author.send("I'll be sure to send a copy to your parents. 😈")
+
+      elif any(word in message.content.replace("-","") for word in insultworthy):
+        dice = random.randint(0,len(insults)-1)
+        choice = insults[dice]
+        try:
+          await message.delete()
+        except:
+          print("Something went wrong while trying to delete a msg.")
+          await message.add_reaction('<:kgm_angry:850398050358132756>')
+        await channel.send(choice)
+        if dice // 2 == 0:
+          await message.author.send('**Say cheese, ' + str(message.author) + '**')
+          await asyncio.sleep(3)
+          await message.author.send('This will go to the database records.')
+          await asyncio.sleep(5)
+          await message.author.send("I'll be sure to send a copy to your parents. 😈")
+
+      elif any(word in message.content.replace(",","") for word in insultworthy):
+        dice = random.randint(0,len(insults)-1)
+        choice = insults[dice]
+        try:
+          await message.delete()
+        except:
+          print("Something went wrong while trying to delete a msg.")
+          await message.add_reaction('<:kgm_angry:850398050358132756>')
+        await channel.send(choice)
+        if dice // 2 == 0:
+          await message.author.send('**Say cheese, ' + str(message.author) + '**')
+          await asyncio.sleep(3)
+          await message.author.send('This will go to the database records.')
+          await asyncio.sleep(5)
+          await message.author.send("I'll be sure to send a copy to your parents. 😈")
+
+
+
+  # THE FOLLOWING ARE SOME 'SMART COMMANDS' that don't need a prefix to work. Muxbot simply fishes out its instruction parameters if some conditions are met
+  # To ensure better sensitivity, the commands are not case-sensitive since Muxbot converts all text strings into lowercase English ASCII.
+  
+  # Bug report trigger
+  if ("log") in message.content.lower() and ("mux") in message.content.lower():
+    await channel.send("Hmm... you want me to report a bug? Very well. Type it down starting with /log")
     def check(msg):
       return msg.content.startswith('/log')
     message = await client.wait_for('message', check=check)
     lognote = message.content[len('/log'):]
-    await channel.send("Okay, senpai. Your report has been sent to the developer. He'll check it out ASAP.")
+    await channel.send("Alright, buddy. I've taken that into account. The real `Mukto` will handle it from his side.")
     bugwrite(str(message.author) + " said: " + str(lognote) + "-- Time: " + time.ctime())
+
+  # Invite link for Heartbreak - Muxbot's female counterpart (and elder 'sister')
+  if ("mux") in message.content.lower() and ("where") in message.content.lower() and ("your") in message.content.lower() and (("sister") in message.content.lower() or ("partner") in message.content.lower()):
+    await channel.send("Oh, right...")
+    await asyncio.sleep(2)
+    await channel.send("Invite her here, please : https://mukto.live/bots/heartbreak)
 
   # Changes nickname of a user (permission required)
   if message.content.lower() == "/nickname":
@@ -326,91 +386,8 @@ async def on_message(message):
     await channel.send('{} is your new nickname'.format(name))
     await message.author.edit(nick=name)
   
-
-  # If you're not feeling in the right mood, you can also make Heartbreak do the same by intercepting the prefix-based commands and making her reply with harsh or depressing words
-  #if ("choose") in message.content.lower():
-    #await channel.send("Meh, I can't decide today. Sorry. 😒")
-
-    
-  # This was meant to be a server-specific command, for testing if she can copy an emoji
-  if (":duckdance~1:") in message.content:
-    await channel.send(":duckdance~1:")
-
-  # Creates a DM (direct msg) chat with an user
-  if message.content.lower() == "dm me":
-    await channel.send("Creating DM with " + str(message.author))
-    await message.author.send('*DM started with ' + str(message.author) + '*')
-    await message.author.send('Hello!')
-    await message.author.send("Please note, that some commands may not work here since we're so close together.🥵🤭")
-
-  # CHECK FOR LOL, REPLY WITH GIGGLE
-  if (" lol") in message.content:
-    await message.add_reaction('<:giggle:821538085741133845>')
-  elif ("lol") in message.content.lower():
-    await message.add_reaction('<:giggle:821538085741133845>')
-  elif (" lol") in message.content:
-    await message.add_reaction('<:giggle:821538085741133845>')
-  elif ("lollipop") in message.content:
-    await channel.send(":lollipop:")
-  elif message.content == "lol" or message.content == "Lol" or message.content == "LOL" or message.content =="IoI" or message.content == "/o/" or message.content == "lol":
-    await message.add_reaction('<:giggle:821538085741133845>')
-
-  # This command was for playing a sort of 'Russian Roulette' by messing around with probability.
-  # Heartbreak either sends a Rick Roll version of the forsaken "Fukouna Shoujo 03" GIF (if you're lucky) or.... sends the dreaded original GIF uncensored (luckly for NSFW people)
-  #if ("fukouna") in message.content.lower():
-    #dice = random.randint(0,9)
-    #if dice > 4:
-      #await channel.send("https://i.kym-cdn.com/photos/images/original/002/098/468/b87.gif")
-    #else:
-      #await channel.send("https://cdn.discordapp.com/attachments/846755146028941392/846807252971290684/fukounashoujo500.gif")
-  
-  # This command tells Heartbreak to send a GIF of Chika Fujiwara if the message conditions are met
-  if (("send") in message.content.lower() or ("give") in message.content.lower() or ("post") in message.content.lower()) and ("chika") in message.content.lower() and ("gif") in message.content.lower():
-    await channel.send(CHIKA_GIF)
-
-  # This command has been temporarily turned off due to complaints from a server
-  #if any(word in message.content.lower() for word in ["sus","5u5","amogus"]):
-    #if tolerance_sus == 9:
-      #await channel.send("You're spamming this command, senpai. 😠")
-    #elif tolerance_sus >= 10:
-      #print("Someone spammed this command")
-    #else:
-      #dice = random.randint(1,2)
-      #if dice == 2:
-        #await channel.send("Sus!")
-        #await channel.send(SUSCLIP)
-      #else:
-        #await channel.send(SUSCLIP)
-
-  # Sends a Paimon 'ehe' GIF just like the client.command but with more sensitivity
-  if message.content.lower()=="ehe" or message.content.lower()=="ehe~":
-    await channel.send(PAIMON_EHE)
-  
-  # Sends a tampered help list
-  if message.content.lower()=="help":
-    if tolerance_help == 9:
-      await channel.send("You're spamming this command, senpai. 😠")
-    elif tolerance_help >= 10:
-      print("Someone spammed this command")
-    else:
-      await channel.send("Oh, I'm sorry 😥")
-      await channel.send("There is NO HELP from now on. 😈")
-      await channel.send("The range of commands for me are now upto your imagination. 😏")
-      await channel.send("Just say `ulog` to review updates.")
-      await channel.send("**Have a nice day.** 👋")
-      tolerance_help += 1
-  
-  if message.content=="<3" or message.content=="❤️":
-    await channel.send("<3 to you, too!")
-  
-  # --------------------------------------- QUICK TEMPLATE
-  # if message.content=="":
-  #   await channel.send()
-  # -------------------------------------------------------
-  
-
   # Shows update log (must be pre-stored in the directory)
-  if message.content.lower() == "ulog":
+  if message.content.lower() == "mux, ulog":
     try:
       f = open("update_log.txt","r")
       if f.mode == 'r':
@@ -418,9 +395,9 @@ async def on_message(message):
         await channel.send(contents)
     finally:
       f.close()
-
+  
   # Sends random spam links and junk (must be pre-stored in the directory)
-  if "spam" in message.content.lower() and "Heartbreak" in message.content.lower():
+  if message.content == "mux, spam": #if author types /ulog bot displays updatelog
     try:
       f = open("spam.txt","r")
       if f.mode == 'r':
@@ -432,9 +409,6 @@ async def on_message(message):
         await channel.send(contents)
     finally:
       f.close()
-
-  if message.content == "/whoami": #if author types /whoami bot responds with username
-    await channel.send(message.author)
   
   # THIS SINGLE LINE OF CODE IS VERY VERY IMPORTANT TO ENSURE THAT BOTH THE CLIENT.COMMAND AND CLIENT.EVENT COMMANDS CAN RUN SMOOTHLY WITHOUT CLASHING OR LAGGING
   await client.process_commands(message)
