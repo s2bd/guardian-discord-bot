@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+# About Muxbot
+A multi-purpose Discord bot, intended for administrative purposes. (Work in progress)
+Also can be defined as a defender bot that auto-deletes NSFW and/or swear words. He insults back if anyone is too rude or offensive.
+![Mukto bot banner 1](https://media.discordapp.net/attachments/816302805560066069/856057289043607562/muktodiscbot.png?width=1101&height=231)
+![Mukto bot banner 2](https://media.discordapp.net/attachments/816302805560066069/856057306504233010/muxbot_banner.png?width=1101&height=348)
+Image from a scene in a video by [League of Legends](https://www.youtube.com/watch?v=KbNL9ZyB49c), edited with [Canva](https://canva.com)
 
-You can use the [editor on GitHub](https://github.com/dmimukto/Muxbot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+# Usage
+* You may invite the currently active version of this bot as 'Mukto' from [here](https://mukto.live)
+* You can also use this as a base template for your own bot
+* You can merge some of its features or reap inspiration from the functions of this bot
+* All on you! Do whatever you wish. Just don't make this bot look too evil or anything.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Restrictions
+Currently there are no specified restrictions from my behalf except a kind suggestion NOT to use the logging features of this bot!
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dmimukto/Muxbot/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+# Acknowledgements
+* Main development : [Dewan Mukto](https://github.com/dmimukto)
+* Inspiration, template base : [Replit](https://replit.com/@templates/Discordpy-bot-template-with-commands-extension)
+* Logging base : [Cics0-gif](https://github.com/Cisc0-gif)
