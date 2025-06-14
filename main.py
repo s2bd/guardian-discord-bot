@@ -1,10 +1,3 @@
-# 𝗠𝗨𝗫𝗕𝗢𝗧 (𝗠𝗨𝗞𝗧𝗢) 𝗗𝗜𝗦𝗖𝗢𝗥𝗗 𝗕𝗢𝗧 - 𝗢𝗥𝗜𝗚𝗜𝗡𝗔𝗟 𝗦𝗢𝗨𝗥𝗖𝗘
-# @author dmimukto 2021
-# @credits Replit's Discord Bot template, Stack Overflow, Cisc0-gif (https://github.com/Cisc0-gif/Discord-Bot-Template/blob/a53aad3ae91ed02d6f99a97328e1d9e4a9cc4a17/bot.py)
-# @license MIT License (https://github.com/dmimukto/Muxbot/blob/main/LICENSE)
-# @copyright Asenturisk Corporation 2021
-
-
 # Importing the necessary modules for booting up and running the bot.
 import discord
 import os
@@ -182,21 +175,9 @@ async def on_ready():
 # ⊱ ──────────────────────── {⋅. ✯ .⋅} ──────────────────────── ⊰ #
 
                                                     
-  # The following wordmark is for decorative purposes only. Please remove it since you are not hosting the Mukto bot nor the Muxbot 'as is'.
+  # The following wordmark is for decorative purposes only. Please remove it since you are not hosting the bot 'as is'.
   print("""
-                                                 .-'''-.     
-                                                '   _    \   
- __  __   ___                 .               /   /` '.   \  
-|  |/  `.'   `.             .'|              .   |     \  '  
-|   .-.  .-.   '          .'  |           .| |   '      |  ' 
-|  |  |  |  |  |         <    |         .' |_\    \     / /  
-|  |  |  |  |  |  _    _  |   | ____  .'     |`.   ` ..' /   
-|  |  |  |  |  | | '  / | |   | \ .' '--.  .-'   '-...-'`    
-|  |  |  |  |  |.' | .' | |   |/  .     |  |                 
-|__|  |__|  |__|/  | /  | |    /\  \    |  |                 
-               |   `'.  | |   |  \  \   |  '.'               
-               '   .'|  '/'    \  \  \  |   /                
-                `-'  `--''------'  '---'`'-'                  """)
+    Guardian Discord Bot""")
   print('---------------------------------------------------------------------')
   print('')
   print('https://discordapp.com/api/oauth2/authorize?scope=bot&client_id=' + str(client.user.id))
