@@ -20,6 +20,8 @@ pip install discord requests flask
 ```python
 python3 main.py
 ```
+If you get something like this, it's working fine 👍
+![](/Screenshot%20from%202025-06-17%2023-59-36.png)
 
 > [!NOTE]
 > For recent Python3 versions on Linux, you may have to create a virtual environment to download external libraries/packages via `pip install *`
@@ -32,3 +34,6 @@ python3 -m venv bot_env
 source bot_env/bin/activate
 ```
 And now you can easily type the `pip install _` commands.
+
+## Or... Just get the original bot
+# [[🔗 Invite]](https://discord.com/api/oauth2/authorize?client_id=856019083686051860&permissions=8&scope=bot)
