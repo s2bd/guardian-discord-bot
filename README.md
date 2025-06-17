@@ -3,7 +3,8 @@ A multi-purpose Discord bot, intended for administrative purposes. (Work in prog
 Also can be defined as a defender bot that auto-deletes NSFW and/or swear words. He insults back if anyone is too rude or offensive.
 
 ### Restrictions
-Currently there are no specified restrictions from my behalf except a kind suggestion NOT to use the logging features of this bot!
+Currently there are no specified restrictions from my behalf except a kind suggestion NOT to use the logging features of this bot too frequently!
+![](/newdashboard.png)
 
 ### Acknowledgements
 * Inspiration, template base : [Replit](https://replit.com/@templates/Discordpy-bot-template-with-commands-extension)
@@ -16,6 +17,9 @@ Currently there are no specified restrictions from my behalf except a kind sugge
 ```ruby
 pip install discord requests flask
 ```
+- Edit this line of code:
+`TOKEN = os.getenv("TOKEN")`
+with your bot token from the [Discord Developers Portal](https://discord.com/developers/applications), or define an environment variable if you are using a cloud service to host the bot. Or to make a bot, just make an app, then go to the **Bot** tab and create one. Copy the token and store it safely somewhere.
 - Run by:
 ```python
 python3 main.py
